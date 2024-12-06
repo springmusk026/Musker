@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-gray-900 text-white min-h-screen;
+}
+
+#root {
+  @apply h-screen flex flex-col;
+}
+
+/* Scrollbar Styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
+}
+
+/* Prose Styles */
+.prose {
+  @apply text-gray-300;
+}
+
+.prose p {
+  @apply my-2;
+}
+
+.prose pre {
+  @apply bg-gray-800/50 p-4 rounded-lg;
+}
+
+/* Animation Keyframes */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s infinite;
+}
+
+/* Glass Morphism */
+.glass-morphism {
+  @apply bg-opacity-20 backdrop-blur-lg border border-white/10;
+}
+
+/* Message Transitions */
+.message-enter {
+  @apply transform translate-y-4 opacity-0;
+}
+
+.message-enter-active {
+  @apply transform translate-y-0 opacity-100 transition-all duration-300;
+}
+
+/* Input Focus Styles */
+textarea:focus {
+  @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
+}
+
+/* Button Styles */
+button {
+  @apply transition-all duration-200;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Code Block Styles */
+.markdown-content pre {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.markdown-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.markdown-content > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content p code {
+  background-color: rgba(31, 41, 55, 0.5);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+pre {
+  @apply overflow-x-auto;
+}
+
+.message-bubble {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.message-bubble pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.message-bubble code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-gray-100;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-surface-light/30 backdrop-blur-lg border border-gray-700/30 shadow-lg;
+  }
+  
+  .chat-container {
+    @apply glass-morphism rounded-2xl p-6 h-[85vh] flex flex-col gap-4 relative
+           shadow-xl shadow-surface-light/10;
+  }
+
+  .messages-container {
+    @apply flex-1 overflow-y-auto space-y-4 pr-4 
+           scrollbar-thin scrollbar-track-surface-lighter 
+           scrollbar-thumb-gray-700 hover:scrollbar-thumb-gray-600;
+  }
+
+  .chat-message {
+    @apply p-4 rounded-2xl max-w-[85%] animate-fade-in transition-all duration-300
+           hover:shadow-lg hover:shadow-surface-light/5;
+  }
+  
+  .user-message {
+    @apply ml-auto bg-primary/10 border border-primary/20 text-white
+           hover:bg-primary/15 transition-colors;
+  }
+  
+  .bot-message {
+    @apply bg-surface-lighter/40 border border-gray-700/20 text-gray-100
+           hover:bg-surface-lighter/50 transition-colors;
+  }
+
+  .chat-input-container {
+    @apply glass-morphism rounded-xl p-2 flex items-center gap-2
+           shadow-lg shadow-surface-light/5;
+  }
+  
+  .chat-input {
+    @apply w-full bg-transparent p-3 rounded-lg focus:outline-none 
+           text-gray-100 placeholder-gray-400
+           transition-all duration-300
+           focus:ring-2 focus:ring-primary/20;
+  }
+  
+  .send-button {
+    @apply px-6 py-3 bg-primary/90 hover:bg-primary text-white rounded-lg 
+           transition-all duration-300 ease-in-out flex items-center gap-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           hover:shadow-lg hover:shadow-primary/20
+           active:scale-95;
+  }
+
+  .typing-indicator {
+    @apply flex space-x-2 p-3;
+  }
+
+  .typing-dot {
+    @apply w-2 h-2 bg-primary/60 rounded-full animate-bounce;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  /* Code block styles */
+  pre {
+    @apply rounded-lg border border-gray-700/30 !important;
+  }
+
+  code {
+    @apply font-mono text-sm;
+  }
+
+  .code-block-header {
+    @apply flex items-center justify-between px-4 py-2 
+           bg-gray-800 border-b border-gray-700
+           text-xs font-medium text-gray-400;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+}
