@@ -5,7 +5,6 @@ import { ChatInput } from './components/ChatInput';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { ChatHeader } from './components/ChatHeader';
 import { useChat } from './hooks/useChat';
-import { ParticleBackground } from './components/ParticleBackground';
 
 export const ChatInterface: React.FC = () => {
     const {

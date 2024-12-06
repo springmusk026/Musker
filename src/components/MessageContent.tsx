@@ -85,7 +85,9 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content, imageUr
                                     <div className="relative">
                                         <SyntaxHighlighter
                                             language={language || 'text'}
-                                            style={atomDark}
+                                            //
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                            style={atomDark as any}
                                             customStyle={{
                                                 margin: 0,
                                                 borderRadius: '0.5rem',

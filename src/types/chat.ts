@@ -5,6 +5,7 @@ export interface Message {
     timestamp: Date;
     type?: 'text' | 'code';
     language?: string;
+    imageUrl?: string;
   }
 
 export interface ChatState {

@@ -2,6 +2,7 @@ const WORKER_URL = 'https://divine-lake-993a.springmusk.workers.dev';
 
 interface StreamResponse {
     type: 'connection' | 'message' | 'complete' | 'error';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data?: any;
     error?: string;
 }
@@ -105,11 +106,7 @@ export class WorkerAPI {
             }
 
         } catch (error) {
-            if (error.name === 'AbortError') {
-                console.log('Request was cancelled');
-                return;
-            }
-
+            
             onEvent({
                 type: 'error',
                 error: error instanceof Error ? error.message : 'Unknown error occurred',
@@ -161,11 +158,7 @@ export class WorkerAPI {
     
             onEvent({ type: 'complete' });
         } catch (error) {
-            if (error.name === 'AbortError') {
-                console.log('Request was cancelled');
-                return;
-            }
-    
+            
             onEvent({
                 type: 'error',
                 error: error instanceof Error ? error.message : 'Unknown error occurred',

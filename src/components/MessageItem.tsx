@@ -18,7 +18,7 @@ export const MessageItem: React.FC<MessageItemProps> = ({ message, isStreaming }
                     ${isAI ? 'bg-gray-800/50 backdrop-blur-sm' : 'bg-blue-600/50 backdrop-blur-sm'}
                     ${isStreaming ? 'animate-pulse' : ''}
                 `}>
-                    <MessageContent message={message} isStreaming={isStreaming} />
+                    <MessageContent content={message.content}  />
                 </div>
             </div>
         </div>
