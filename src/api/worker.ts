@@ -1,3 +1,5 @@
+import { supabase } from '../supabaseClient';
+
 const WORKER_URL = 'https://divine-lake-993a.springmusk.workers.dev';
 
 interface StreamResponse {
@@ -24,10 +26,16 @@ export class WorkerAPI {
         this.abortController = new AbortController();
 
         try {
-            const response = await fetch(`${WORKER_URL}/text`, {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                throw new Error('No authenticated session');
+            }
+
+            const response = await fetch(`${WORKER_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`,
                 },
                 body: JSON.stringify({ message }),
                 signal: this.abortController.signal,
@@ -121,10 +129,16 @@ export class WorkerAPI {
         this.abortController = new AbortController();
     
         try {
-            const response = await fetch(`${WORKER_URL}/image`, {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.access_token) {
+                throw new Error('No authenticated session');
+            }
+
+            const response = await fetch(`${WORKER_URL}/api/image`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`,
                 },
                 body: JSON.stringify({ prompt }),
                 signal: this.abortController.signal,

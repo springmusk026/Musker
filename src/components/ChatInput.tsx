@@ -28,7 +28,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            onSubmit(e);
+            // Create a proper form event
+            const formEvent = new Event('submit', { bubbles: true, cancelable: true }) as unknown as React.FormEvent;
+            onSubmit(formEvent);
         }
     };
 

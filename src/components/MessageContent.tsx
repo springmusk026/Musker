@@ -47,7 +47,7 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content, imageUr
     };
 
     return (
-        <div className="prose prose-invert max-w-none">
+        <div className={`prose prose-invert max-w-none ${isAssistant ? 'relative w-full' : ''}`}>
             {isAssistant && (
                 <button
                     onClick={handleCopy}
@@ -59,6 +59,7 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content, imageUr
             )}
             {content && (
                 <ReactMarkdown
+                    className={`${isAssistant ? 'w-full break-words whitespace-pre-wrap' : ''}`}
                     components={{
                         code({ node, inline, className, children, ...props }) {
                             const match = /language-(\w+)/.exec(className || '');

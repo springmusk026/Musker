@@ -11,12 +11,14 @@ interface MessageListProps {
 
 export const MessageList: React.FC<MessageListProps> = ({ messages, onImageClick }) => {
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 w-full">
             {messages.map((message) => (
                 <div
                     key={message.id}
-                    className={`flex items-start space-x-4 ${
-                        message.role === 'assistant' ? 'bg-[#111111] rounded-xl p-4 shadow-lg' : ''
+                    className={`flex items-start space-x-4 w-full ${
+                        message.role === 'assistant' 
+                            ? 'relative bg-[#1a1a1a] hover:bg-[#1f1f1f] transition-colors rounded-xl p-4 shadow-lg' 
+                            : 'p-4'
                     }`}
                 >
                     <div className={`flex-shrink-0 ${
@@ -32,7 +34,7 @@ export const MessageList: React.FC<MessageListProps> = ({ messages, onImageClick
                         )}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <div className="text-sm text-gray-500 mb-1">
+                        <div className="text-sm text-gray-500 mb-1 font-medium">
                             {message.role === 'assistant' ? 'AI Assistant' : 'You'}
                         </div>
                         <div className={`prose prose-invert max-w-none ${
