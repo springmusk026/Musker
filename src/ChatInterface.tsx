@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MessageList } from './components/MessageList';
 import { ImagePopup } from './components/ImagePopup';
@@ -8,6 +8,7 @@ import { ChatHeader } from './components/ChatHeader';
 import { useChat } from './hooks/useChat';
 import { supabase } from './supabaseClient';
 import Sidebar from './components/Sidebar';
+import { ChatSEO } from './components/ChatSEO';
 
 interface ChatSession {
     id: string;
@@ -144,64 +145,67 @@ const ChatInterface: React.FC = () => {
     }
 
     return (
-        <div className="h-screen bg-[#111111] flex flex-col">
-            {/* Header */}
-            <ChatHeader />
+        <>
+            <ChatSEO />
+            <div className="h-screen bg-[#111111] flex flex-col">
+                {/* Header */}
+                <ChatHeader />
 
-            {/* Main Content */}
-            <div className="flex-1 flex relative">
-                <Sidebar
-                    onSessionSelect={handleSessionSelect}
-                    currentSessionId={currentSessionId}
-                    sessions={sessions}
-                    onSessionsUpdate={setSessions}
-                    isOpen={isSidebarOpen}
-                    onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
-                />
-                
-                <div className="flex-1 flex flex-col">
-                    <div className="flex-1 overflow-y-auto p-4">
-                        {isChatLoading ? (
-                            <div className="flex items-center justify-center h-full">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                            </div>
-                        ) : messages.length === 0 ? (
-                            <WelcomeScreen onSuggestionClick={setInputMessage} />
-                        ) : (
-                            <MessageList messages={messages} onImageClick={(url) => setPopupImageUrl(url)} />
-                        )}
-                    </div>
+                {/* Main Content */}
+                <div className="flex-1 flex relative">
+                    <Sidebar
+                        onSessionSelect={handleSessionSelect}
+                        currentSessionId={currentSessionId}
+                        sessions={sessions}
+                        onSessionsUpdate={setSessions}
+                        isOpen={isSidebarOpen}
+                        onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+                    />
+                    
+                    <div className="flex-1 flex flex-col">
+                        <div className="flex-1 overflow-y-auto p-4">
+                            {isChatLoading ? (
+                                <div className="flex items-center justify-center h-full">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                                </div>
+                            ) : messages.length === 0 ? (
+                                <WelcomeScreen onSuggestionClick={setInputMessage} />
+                            ) : (
+                                <MessageList messages={messages} onImageClick={(url) => setPopupImageUrl(url)} />
+                            )}
+                        </div>
 
-                    <div className="p-4 border-t border-[#2a2a2a]">
-                        <ChatInput
-                            inputMessage={inputMessage}
-                            setInputMessage={setInputMessage}
-                            isStreaming={isStreaming}
-                            onSubmit={handleSendMessage}
-                            onImageGeneration={handleImageGeneration}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Image Popup */}
-            {popupImageUrl && (
-                <ImagePopup imageUrl={popupImageUrl} onClose={() => setPopupImageUrl(null)} />
-            )}
-
-            {/* Loading Indicator */}
-            {isStreaming && (
-                <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-[#1a1a1a] text-blue-400 px-4 py-2 rounded-full 
-                                  border border-[#2a2a2a] shadow-lg">
-                        <div className="flex items-center space-x-2">
-                            <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-500 border-t-transparent" />
-                            <span>AI is thinking...</span>
+                        <div className="p-4 border-t border-[#2a2a2a]">
+                            <ChatInput
+                                inputMessage={inputMessage}
+                                setInputMessage={setInputMessage}
+                                isStreaming={isStreaming}
+                                onSubmit={handleSendMessage}
+                                onImageGeneration={handleImageGeneration}
+                            />
                         </div>
                     </div>
                 </div>
-            )}
-        </div>
+
+                {/* Image Popup */}
+                {popupImageUrl && (
+                    <ImagePopup imageUrl={popupImageUrl} onClose={() => setPopupImageUrl(null)} />
+                )}
+
+                {/* Loading Indicator */}
+                {isStreaming && (
+                    <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2">
+                        <div className="bg-[#1a1a1a] text-blue-400 px-4 py-2 rounded-full 
+                                      border border-[#2a2a2a] shadow-lg">
+                            <div className="flex items-center space-x-2">
+                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-500 border-t-transparent" />
+                                <span>AI is thinking...</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 };
 

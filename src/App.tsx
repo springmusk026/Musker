@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ChatInterface } from './ChatInterface';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -37,48 +38,50 @@ const App: React.FC = () => {
   }
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-900">
-        <Routes>
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
-          <Route
-            path="/login"
-            element={isAuthenticated ? <Navigate to="/chat" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={isAuthenticated ? <Navigate to="/chat" /> : <Signup />}
-          />
-          <Route
-            path="/verify-email"
-            element={<EmailVerification />}
-          />
-          <Route
-            path="/forgot-password"
-            element={isAuthenticated ? <Navigate to="/chat" /> : <ForgotPassword />}
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <UserProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/chat"
-            element={
-              <ProtectedRoute>
-                <ChatInterface />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-900">
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage />}
+            />
+            <Route
+              path="/login"
+              element={isAuthenticated ? <Navigate to="/chat" /> : <Login />}
+            />
+            <Route
+              path="/signup"
+              element={isAuthenticated ? <Navigate to="/chat" /> : <Signup />}
+            />
+            <Route
+              path="/verify-email"
+              element={<EmailVerification />}
+            />
+            <Route
+              path="/forgot-password"
+              element={isAuthenticated ? <Navigate to="/chat" /> : <ForgotPassword />}
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <ChatInterface />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 };
 
