@@ -86,7 +86,7 @@ const UserProfile = () => {
   const handleLogout = async () => {
     try {
       await supabase.auth.signOut();
-      navigate('/login');
+      navigate('/chat');
     } catch (error: any) {
       setError(error.message);
     }

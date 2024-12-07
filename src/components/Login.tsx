@@ -19,7 +19,7 @@ const Login = () => {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      navigate('/');
+      navigate('/chat');
     } catch (error: any) {
       setError(error.message);
     } finally {

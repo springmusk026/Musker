@@ -7,6 +7,7 @@ import EmailVerification from './components/OTPVerification';
 import ForgotPassword from './components/ForgotPassword';
 import UserProfile from './components/UserProfile';
 import ProtectedRoute from './components/ProtectedRoute';
+import HomePage from './components/HomePage';
 import { useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
 
@@ -40,12 +41,16 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-gray-900">
         <Routes>
           <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route
             path="/login"
-            element={isAuthenticated ? <Navigate to="/" /> : <Login />}
+            element={isAuthenticated ? <Navigate to="/chat" /> : <Login />}
           />
           <Route
             path="/signup"
-            element={isAuthenticated ? <Navigate to="/" /> : <Signup />}
+            element={isAuthenticated ? <Navigate to="/chat" /> : <Signup />}
           />
           <Route
             path="/verify-email"
@@ -53,7 +58,7 @@ const App: React.FC = () => {
           />
           <Route
             path="/forgot-password"
-            element={isAuthenticated ? <Navigate to="/" /> : <ForgotPassword />}
+            element={isAuthenticated ? <Navigate to="/chat" /> : <ForgotPassword />}
           />
           <Route
             path="/profile"
@@ -64,7 +69,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/"
+            path="/chat"
             element={
               <ProtectedRoute>
                 <ChatInterface />
