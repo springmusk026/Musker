@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { RiRobot2Line, RiMessage2Line, RiLightbulbLine, RiShieldLine } from 'react-icons/ri';
 import { FiArrowRight, FiCpu, FiGithub, FiUser } from 'react-icons/fi';
@@ -48,24 +48,6 @@ const HomePage = () => {
             delay: 0.3
         }
     ];
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
-    };
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900/50 to-gray-900 relative">
