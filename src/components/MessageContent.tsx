@@ -57,6 +57,7 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content, imageUr
                     <FiCopy className="w-5 h-5" />
                 </button>
             )}
+            
             {content && (
                 <ReactMarkdown
                     className={`${isAssistant ? 'w-full break-words whitespace-pre-wrap' : ''}`}
