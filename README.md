@@ -1,9 +1,14 @@
 
 # Musker - Open Source AI Chatbot
 
-![Musker Logo](public/logo.png)
+![Musker Logo](public/images/logo.png)
 
 Musker is a free, open-source AI chatbot platform that leverages Cloudflare Workers AI for chat and image generation capabilities, with authentication and data persistence powered by Supabase.
+
+**Musker can be hosted 100% free of cost just with a cloudflare account**
+
+> **⚠ Info:** Currently Backend code isnt public we'll do some refactors on code and must be with you soon
+
 
 ## Features
 
@@ -23,6 +28,9 @@ Musker is a free, open-source AI chatbot platform that leverages Cloudflare Work
 - **Database**: Supabase PostgreSQL
 - **AI Provider**: Cloudflare Workers AI
 - **Deployment**: Cloudflare Pages
+
+## Live Demo
+- **Website**: [Musker.pages.dev](https://musker.pages.dev/) 
 
 ## Getting Started
 
@@ -109,6 +117,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Your Name - [@springmusk026](https://github.com/springmusk026)
+Spring Musk - [@springmusk026](https://github.com/springmusk026)
 
 Project Link: [https://github.com/springmusk026/Musker](https://github.com/springmusk026/Musker)
