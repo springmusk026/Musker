@@ -1,6 +1,6 @@
 import { supabase } from '../supabaseClient';
 
-const WORKER_URL = 'https://divine-lake-993a.springmusk.workers.dev';
+export const WORKER_URL = import.meta.env.VITE_WORKER_URL;
 
 interface StreamResponse {
     type: 'connection' | 'message' | 'complete' | 'error';

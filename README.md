@@ -37,7 +37,7 @@ Musker is a free, open-source AI chatbot platform that leverages Cloudflare Work
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/musker.git
+git clone https://github.com/springmusk026/Musker.git
 cd musker
 ```
 
@@ -46,12 +46,13 @@ cd musker
 npm install
 ```
 
-3. Create environment variables:
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_WORKER_URL=your_cloudflare_worker_url
-```
+3. Configure Variables:
+-Rename .env.example to .env
+    ```env
+    VITE_WORKER_URL=your_cloudflare_worker_url
+    VITE_SUPABASE_URL=your_supabase_project_url
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
 
 4. Run the development server:
 ```bash
@@ -69,7 +70,6 @@ musker/
 │   ├── styles/       # Global styles
 │   └── types/        # TypeScript types
 ├── public/           # Static assets
-└── chatbot-worker/   # Cloudflare Worker code
 ```
 
 ## Contributing
@@ -109,6 +109,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Your Name - [@yourusername](https://github.com/yourusername)
+Your Name - [@springmusk026](https://github.com/springmusk026)
 
-Project Link: [https://github.com/yourusername/musker](https://github.com/yourusername/musker)
+Project Link: [https://github.com/springmusk026/Musker](https://github.com/springmusk026/Musker)
