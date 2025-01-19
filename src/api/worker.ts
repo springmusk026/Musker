@@ -4,7 +4,6 @@ const WORKER_URL = 'https://divine-lake-993a.springmusk.workers.dev';
 
 interface StreamResponse {
     type: 'connection' | 'message' | 'complete' | 'error';
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data?: any;
     error?: string;
 }
