@@ -81,8 +81,8 @@ export class WorkerAPI {
                                 if (content.includes('```')) {
                                     content = content.replace(/```(\w+)?(\s*\n)?/g, '```$1\n');
                                 }
-                                onEvent({ 
-                                    type: 'message', 
+                                onEvent({
+                                    type: 'message',
                                     data: { content }
                                 });
                             }
@@ -103,8 +103,8 @@ export class WorkerAPI {
                         if (content.includes('```')) {
                             content = content.replace(/```(\w+)?(\s*\n)?/g, '```$1\n');
                         }
-                        onEvent({ 
-                            type: 'message', 
+                        onEvent({
+                            type: 'message',
                             data: { content }
                         });
                     }
@@ -114,7 +114,7 @@ export class WorkerAPI {
             }
 
         } catch (error) {
-            
+
             onEvent({
                 type: 'error',
                 error: error instanceof Error ? error.message : 'Unknown error occurred',
@@ -127,7 +127,7 @@ export class WorkerAPI {
     public async streamImage(prompt: string, onEvent: StreamCallback): Promise<void> {
         this.cancelRequest();
         this.abortController = new AbortController();
-    
+
         try {
             const { data: { session } } = await supabase.auth.getSession();
             if (!session?.access_token) {
@@ -143,17 +143,17 @@ export class WorkerAPI {
                 body: JSON.stringify({ prompt }),
                 signal: this.abortController.signal,
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Network response was not ok: ${response.statusText}`);
             }
-    
+
             if (!response.body) {
                 throw new Error('No response body');
             }
-    
+
             onEvent({ type: 'connection', data: { status: 'connected' } });
-    
+
             const reader = response.body.getReader();
             const chunks: Uint8Array[] = [];
             while (true) {
@@ -161,18 +161,18 @@ export class WorkerAPI {
                 if (done) break;
                 if (value) chunks.push(value);
             }
-    
+
             const blob = new Blob(chunks, { type: 'image/jpg' });
             const imageUrl = URL.createObjectURL(blob);
-    
+
             onEvent({
                 type: 'message',
                 data: { imageUrl },
             });
-    
+
             onEvent({ type: 'complete' });
         } catch (error) {
-            
+
             onEvent({
                 type: 'error',
                 error: error instanceof Error ? error.message : 'Unknown error occurred',
@@ -181,5 +181,5 @@ export class WorkerAPI {
             this.abortController = null;
         }
     }
-    
+
 }
