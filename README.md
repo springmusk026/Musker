@@ -129,5 +129,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Feel free to [open an issue](https://github.com/springmusk026/Musker/issues) if you find bugs or have suggestions for improvements. Remember, this is a learning project, so constructive feedback is always welcome!
 
 ---
-
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
 ⚠️ **Final Note:** This project was built as part of my learning journey. It may not follow all best practices and could contain security vulnerabilities. Feel free to learn from it, but please use caution if you plan to build upon it.
